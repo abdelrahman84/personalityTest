@@ -1,0 +1,34 @@
+<div class="container questionsContainer">
+
+    <div class="discover">
+
+        <h4>Discover Your Perspective</h4>
+
+        <p>Complete the 7 min test and get a detailed report of your lenses on the world.</p>
+
+    </div>
+
+    <div class="questions" *ngIf="questions?.length">
+        <div *ngFor="let question of questions; let i = index" class="question">
+            <p>{{question.content}}</p>
+            <div class="ratingContainer">
+                <span class="disagree">Disagree</span>
+                <input *ngFor="let score of scores" type="radio" value="{{score}}"
+                    [checked]="score === answers[i]['score']" (change)="updateAnswers(i,score)">
+                <span class="agree">Agree</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <p class="email">Your Email</p>
+            <input class="email_input" type="text" [(ngModel)]="email" id="email" placeholder="you@example.com">
+        </div>
+
+
+    </div>
+
+
+    <div class="btnContainer">
+        <button (click)="submit()" class="btnSubmit"><span>Save & Continue</span></button>
+    </div>
+</div>

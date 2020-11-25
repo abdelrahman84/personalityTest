@@ -1,0 +1,121 @@
+.questionsContainer {
+    .discover {
+        padding: 2rem;
+        h4 {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 21px;
+
+            color: #113264;
+        }
+
+        p {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 19px;
+
+            color: #495057;
+        }
+    }
+
+    .questions {
+        .question {
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            box-sizing: border-box;
+            border-radius: 4px;
+            padding: 2rem;
+            text-align: center;
+            width: 740px;
+            margin: 0 auto;
+            p {
+                font-family: Nunito;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 18px;
+                line-height: 25px;
+            }
+
+            .ratingContainer {
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                input {
+                    background: #ffffff;
+                    mix-blend-mode: normal;
+                    width: 24px;
+                    height: 24px;
+                    border: 3px solid #aaaaaa;
+                    box-sizing: border-box;
+                    transform: rotate(-180deg);
+                }
+                .disagree {
+                    font-family: Nunito;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 14px;
+                    line-height: 19px;
+                    text-align: right;
+
+                    color: #fa4344;
+                }
+                .agree {
+                    font-family: Nunito;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 14px;
+                    line-height: 19px;
+
+                    color: #00a079;
+                }
+            }
+            .email {
+                font-family: Nunito;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 18px;
+                line-height: 25px;
+                text-align: center;
+
+                /* gray-700 */
+
+                color: #495057;
+            }
+
+            .email_input {
+                background: #ffffff;
+                border: 2px solid #aaaaaa;
+                box-sizing: border-box;
+                border-radius: 4px;
+                width: 570px;
+                height: 48px;
+                padding: 1rem;
+            }
+        }
+    }
+    .btnContainer {
+        text-align: center;
+        padding: 2rem;
+        .btnSubmit {
+            background: #3d59fa;
+            border-radius: 3px;
+            width: 155px;
+            height: 36px;
+            cursor: pointer;
+            span {
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 19px;
+                text-align: center;
+                color: #ffffff;
+               
+            }
+        }
+    }
+}
