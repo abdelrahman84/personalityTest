@@ -3,6 +3,7 @@ import { PersonalityService } from '../../services/personality.service';
 import { Answer } from '../../models/answer.model';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 
 @Component({
@@ -16,9 +17,10 @@ export class QuestionsComponent implements OnInit {
   scores = [1, 2, 3, 4, 5, 6, 7];
   answers: Answer[] = [];
   email = null;
+  user_email = null;
 
   constructor(private personalityService: PersonalityService, private toastr: ToastrService,
-              private spinner: NgxSpinnerService) { }
+              private spinner: NgxSpinnerService, public ngxSmartModalService: NgxSmartModalService) { }
 
   ngOnInit(): void {
     this.getQuestions();
@@ -60,5 +62,18 @@ export class QuestionsComponent implements OnInit {
     }
   }
 
+  login() {
+    const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+    const test = EMAIL_REGEXP.test(this.user_email);
+    if (!test) {
+      this.toastr.error('Email is missing, or with wrong format', 'Error', { timeOut: 3000 });
+    } else {
+        this.spinner.show();
+        this.personalityService.login(this.user_email).subscribe(res => {
+          this.spinner.hide();
+        }, err => this.spinner.hide());
+      }
+    }
 
-}
+
+  }

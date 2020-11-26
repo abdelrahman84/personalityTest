@@ -38,4 +38,19 @@ export class PersonalityService {
         })
       );
       }
+
+      login(email): Observable<any> {
+        return this.http.post<any>(`${this.baseURL}api/get_user_score`, {email: email}).pipe(
+          map(response => {
+            this.router.navigateByUrl('/results');
+            localStorage.setItem('result', response);
+            return response;
+          }),
+          catchError(error => {
+            console.log(error);
+            this.toastr.error(error.error.Message, 'Error', {timeOut: 3000});
+            return throwError(error);
+          })
+        );
+        }
 }

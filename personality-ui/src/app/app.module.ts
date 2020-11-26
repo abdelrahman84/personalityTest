@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ResultsPageComponent } from './components/results-page/results-page.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxSmartModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

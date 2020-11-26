@@ -8,6 +8,8 @@
 
     </div>
 
+    <button (click)="ngxSmartModalService.getModal('myModal').open()" class="btnModal"><span>Already have an account?</span></button>
+
     <div class="questions" *ngIf="questions?.length">
         <div *ngFor="let question of questions; let i = index" class="question">
             <p>{{question.content}}</p>
@@ -34,3 +36,13 @@
 </div>
 
 <ngx-spinner></ngx-spinner>
+
+<ngx-smart-modal #myModal identifier="myModal">
+    <div class="email_container">
+        <p class="email">Add Your Email</p>
+        <input class="email_input" type="text" [(ngModel)]="user_email" id="user_email" placeholder="you@example.com">
+    </div>
+    <div class="btnContainer">
+        <button (click)="login()" class="btnSubmit"><span>Confirm</span></button>
+    </div>
+  </ngx-smart-modal>

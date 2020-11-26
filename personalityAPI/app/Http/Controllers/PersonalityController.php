@@ -21,9 +21,9 @@ class PersonalityController extends Controller
     {
         $user = User::where('email', $request->email)->first();
         if ($user) {
-        return response()->json([
-        "Message" => 'user already exits, please login to see results'
-        ], 400);
+            return response()->json([
+                "Message" => 'user already exits, please login to see results'
+            ], 400);
         }
         $E = 0;
         $I = 0;
@@ -39,40 +39,40 @@ class PersonalityController extends Controller
             switch ($question->meaning) {
 
                 case 'E';
-                $E += ($answer['score'] -4);
-                break;
+                    $E += ($answer['score'] - 4);
+                    break;
 
                 case 'I';
-                $I += ($answer['score'] -4);
-                break;
+                    $I += ($answer['score'] - 4);
+                    break;
 
                 case 'S';
-                $S += ($answer['score'] -4);
-                break;
+                    $S += ($answer['score'] - 4);
+                    break;
 
                 case 'N';
-                $N += ($answer['score'] -4);
-                break;
+                    $N += ($answer['score'] - 4);
+                    break;
 
                 case 'T';
-                $T += ($answer['score'] -4);
-                break;
+                    $T += ($answer['score'] - 4);
+                    break;
 
                 case 'F';
-                $F += ($answer['score'] -4);
-                break;
+                    $F += ($answer['score'] - 4);
+                    break;
 
                 case 'J';
-                $J += ($answer['score'] -4);
-                break;
+                    $J += ($answer['score'] - 4);
+                    break;
 
                 case 'P';
-                $P += ($answer['score'] -4);
-                break;
+                    $P += ($answer['score'] - 4);
+                    break;
             }
 
-            $personality = ($E > $I || $E == $I ? 'E' : 'I') .''.($S > $N || $S == $N ? 'S' : 'N')
-            .''.($T > $F || $T == $F ? 'T' : 'F') .''.($J > $P || $J == $P ? 'J' : 'P');
+            $personality = ($E > $I || $E == $I ? 'E' : 'I') . '' . ($S > $N || $S == $N ? 'S' : 'N')
+                . '' . ($T > $F || $T == $F ? 'T' : 'F') . '' . ($J > $P || $J == $P ? 'J' : 'P');
         }
         $user = new User();
         $user->email = $request->email;
@@ -80,5 +80,17 @@ class PersonalityController extends Controller
         $user->save();
 
         return  response()->json($personality);
+    }
+
+    public function getUserPersonality(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return response()->json([
+                "Message" => 'user doesn`t, please take the test to have your result'
+            ], 400);
+        }
+
+        return  response()->json($user->personality);
     }
 }
