@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./results-page.component.scss']
 })
 export class ResultsPageComponent implements OnInit {
-
-  constructor() { }
+ result;
+  constructor() {
+   this.result = localStorage.getItem('result');
+   }
 
   ngOnInit(): void {
   }

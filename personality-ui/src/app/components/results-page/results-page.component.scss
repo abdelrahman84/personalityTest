@@ -1,0 +1,89 @@
+.resultsContainer {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    .discover {
+        padding: 2rem;
+        h4 {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 21px;
+
+            color: #113264;
+        }
+
+        p {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 19px;
+
+            color: #495057;
+        }
+    }
+
+    .results {
+        .result {
+            display: flex;
+            align-items: center;
+            margin: 1rem;
+            justify-content: space-between;
+            .spanA {
+                position: relative;
+                right: 150px;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 146.16%;
+                /* or 20px */
+
+                color: #878787;
+                margin: 0 2rem;
+            }
+
+            .spanB {
+                position: relative;
+                right: -100.52px;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 146.16%;
+                /* or 20px */
+
+                color: #878787;
+                margin: 0 2rem;
+            }
+
+            .meterA {
+                position: absolute;
+                width: 218.33px;
+                height: 14.46px;
+                right: 400.52px;
+
+                /* gray-200 */
+
+                border-radius: 3px;
+                margin: 0 1rem;
+                background-image: linear-gradient(to right, #e9ecef 50%, #a920cb 50%);
+            }
+
+            .meterB {
+                position: absolute;
+                width: 218.33px;
+                height: 14.46px;
+                right: 400.52px;
+
+                /* gray-200 */
+
+                border-radius: 3px;
+                margin: 0 1rem;
+                background-image: linear-gradient(to right, #a920cb 50%, #e9ecef 50%);
+            }
+        }
+    }
+}

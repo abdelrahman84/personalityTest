@@ -1,1 +1,43 @@
-<p>results-page works!</p>
+<div class="resultsContainer">
+    <div class="discover">
+
+        <h4>Your Perspective</h4>
+
+        <p>Your Perspective Type is {{result}}</p>
+
+    </div>
+    <div class="results">
+        <div class="result">
+            <span class="spanA">Introversion (I)</span>
+            <div [ngClass]="(result.charAt(0) === 'I') ? 'meterB' : 'meterA'">
+                <span style="width: 25%"></span>
+            </div>
+            <span class="spanB">Extraversion (E)</span>
+        </div>
+
+        <div class="result">
+            <span class="spanA">Sensing (S)</span>
+            <div [ngClass]="(result.charAt(1) === 'S') ? 'meterB' : 'meterA'">
+                <span style="width: 25%"></span>
+            </div>
+            <span class="spanB">Intuition (N)</span>
+        </div>
+
+        <div class="result">
+            <span class="spanA">Thinking (T)</span>
+            <div [ngClass]="(result.charAt(2) === 'T') ? 'meterB' : 'meterA'">
+                <span style="width: 25%"></span>
+            </div>
+            <span class="spanB">Feeling (F)</span>
+        </div>
+
+        <div class="result">
+            <span class="spanA">Judging (J)</span>
+            <div [ngClass]="(result.charAt(3) === 'J') ? 'meterB' : 'meterA'">
+                <span style="width: 25%"></span>
+            </div>
+            <span class="spanB">Perceiving (P)</span>
+        </div>
+
+    </div>
+</div>
