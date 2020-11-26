@@ -22,7 +22,7 @@ class PersonalityController extends Controller
         $user = User::where('email', $request->email)->first();
         if ($user) {
         return response()->json([
-        "Message" => 'user already exits'
+        "Message" => 'user already exits, please login to see results'
         ], 400);
         }
         $E = 0;
