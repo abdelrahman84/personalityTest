@@ -19,7 +19,7 @@ class PersonalityController extends Controller
 
     public function getPersonalityScore(Request $request)
     {
-        $user = User::find($request->email);
+        $user = User::where('email', $request->email)->first();
         if ($user) {
         return response()->json([
         "Message" => 'user already exits'
@@ -79,6 +79,6 @@ class PersonalityController extends Controller
         $user->personality = $personality;
         $user->save();
 
-        return  $personality;
+        return  response()->json($personality);
     }
 }

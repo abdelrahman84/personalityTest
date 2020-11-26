@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonalityService } from '../../services/personality.service';
-// import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms'
-import {Answer} from '../../models/answer.model';
+import { Answer } from '../../models/answer.model';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-questions',
@@ -14,22 +16,19 @@ export class QuestionsComponent implements OnInit {
   scores = [1, 2, 3, 4, 5, 6, 7];
   answers: Answer[] = [];
   email = null;
-  // answersForm: FormGroup;
 
-  constructor(private personalityService: PersonalityService, 
-   // private formGroup: FormBuilder
-    ) { }
+  constructor(private personalityService: PersonalityService, private toastr: ToastrService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.getQuestions();
-    // this.initalizeQuestionsForm();
   }
 
   getQuestions() {
     this.personalityService.getQuestions().subscribe(res => {
       this.questions = res.Questions;
       for (const question of res.Questions) {
-        const a: Answer = {score: null, question_id: question.id};
+        const a: Answer = { score: null, question_id: question.id };
         this.answers.push(a);
       }
     }, err => console.log(err));
@@ -42,26 +41,24 @@ export class QuestionsComponent implements OnInit {
   submit() {
     const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     const test = EMAIL_REGEXP.test(this.email);
-    if (!test) {
-      console.log('invalid email');
-    }
+    let answersMissing = false;
     for (const answer of this.answers) {
       if (!answer.score) {
-        console.log('missing');
+        answersMissing = true;
       }
+    }
+    if (!test) {
+      this.toastr.error('Email is missing, or with wrong format', 'Error', { timeOut: 3000 });
+    } else if (answersMissing) {
+      this.toastr.error('Please answers all questions to get accurate result', 'Error', { timeOut: 3000 });
+    } else {
+      this.spinner.show();
+      this.personalityService.cacluatePersonality(this.email, this.answers).subscribe(res => {
+        this.spinner.hide();
+        this.toastr.success('Thank you for taking the survey', 'Success', { timeOut: 3000 });
+      }, err => this.spinner.hide());
     }
   }
 
-
-
-  // initalizeQuestionsForm() {
-  //   this.answersForm = this.formGroup.group({
-  //     answers: this.formGroup.array([]) ,
-  //   });
-  // }
-
-  // get answers(): FormArray {
-  //   return this.answersForm.get("answers") as FormArray;
-  // }
 
 }
