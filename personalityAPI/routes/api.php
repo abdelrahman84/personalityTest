@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('questions', [PersonalityController::class, 'getQuestions']);
 Route::get('questions', ['uses' => 'PersonalityController@getQuestions', 'as' => 'getQuestions']);
+Route::post('personality_score', ['uses' => 'PersonalityController@getPersonalityScore', 'as' => 'getPersonalityScore']);
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
